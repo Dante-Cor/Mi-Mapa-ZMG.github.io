@@ -7,7 +7,7 @@
     <style>
         /* Paleta de colores y variables */
         :root {
-            --primary-glass: rgba(0, 143, 122, 0.85); /* Tu color base */
+            --primary-glass: rgba(0, 143, 122, 0.85);
             --primary-solid: #008F7A;
             --text-dark: #0A1F3D;
             --bg-light: #F8F9FA;
@@ -24,12 +24,11 @@
         
         /* Sección Principal (Hero) con efecto Glassmorphism */
         .hero {
-            /* Aquí puedes agregar un mapa de fondo en el futuro usando background-image */
             background-color: var(--primary-glass);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             color: white;
-            padding: 80px 20px;
+            padding: 80px 20px 60px;
             text-align: center;
             border-bottom: 4px solid var(--primary-solid);
         }
@@ -37,31 +36,69 @@
         .hero img { 
             width: 120px; 
             height: 120px; 
-            border-radius: 25px; /* Suaviza los bordes del logo que acabamos de hacer */
+            border-radius: 25px;
             margin-bottom: 20px; 
             box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
         }
         
         .hero h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 800; letter-spacing: -1px; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; opacity: 0.95; }
+        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 20px; opacity: 0.95; }
         
+        /* Botones de acción */
+        .cta-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
         .btn { 
             display: inline-block; 
             padding: 12px 28px; 
-            background: white; 
-            color: var(--primary-solid); 
             text-decoration: none; 
             font-weight: bold; 
             border-radius: 30px; 
             transition: all 0.3s ease; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
+        .btn-primary {
+            background: white; 
+            color: var(--primary-solid); 
+        }
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        /* Nota Técnica */
+        .alert-info {
+            background: rgba(0, 0, 0, 0.15);
+            border-left: 4px solid #FFD700;
+            padding: 15px 20px;
+            margin: 0 auto;
+            max-width: 650px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            text-align: left;
+        }
 
         /* Contenedor y Cuadrícula de Características */
         .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
-        .section-title { text-align: center; font-size: 2rem; margin-bottom: 40px; color: var(--primary-solid); }
+        .section-title { text-align: center; font-size: 2rem; margin-bottom: 20px; color: var(--primary-solid); }
         
+        /* Sección de Inspiración */
+        .inspiration-box {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            font-size: 1.15rem;
+            color: #444;
+        }
+
         .grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -104,24 +141,44 @@
             font-size: 0.95rem; 
         }
         
-        footer { text-align: center; padding: 40px 20px; color: #666; font-size: 0.9rem; }
+        footer { 
+            text-align: center; 
+            padding: 40px 20px; 
+            color: #666; 
+            font-size: 0.95rem; 
+            background-color: white;
+            border-top: 1px solid #eaeaea;
+        }
+        footer strong { color: var(--text-dark); }
     </style>
 </head>
 <body>
 
     <!-- CABECERA HERO -->
     <header class="hero">
-        <!-- Asegúrate de tener tu logo.svg en la misma carpeta -->
         <img src="logo.svg" alt="Logo Mi Mapa ZMG">
         <h1>Mi Mapa ZMG</h1>
         <p>Plataforma web de planificación de rutas multimodales. Optimización de traslados urbanos integrando transporte masivo y tradicional mediante algoritmos de grafos y análisis geoespacial.</p>
-        <a href="#arquitectura" class="btn">Conocer la Arquitectura</a>
+        
+        <div class="cta-container">
+            <a href="https://mimapa-zmg.onrender.com/" target="_blank" class="btn btn-primary">🚀 Probar la Web App</a>
+            <a href="#arquitectura" class="btn btn-secondary">Conocer la Arquitectura</a>
+        </div>
+
+        <div class="alert-info">
+            <strong>⚠️ Nota técnica:</strong> El motor de ruteo backend está alojado en una capa gratuita de nube (Render). Por inactividad, el primer arranque del servidor puede tomar entre 30 y 50 segundos. ¡Agradezco mucho tu paciencia!
+        </div>
     </header>
 
     <!-- CONTENIDO PRINCIPAL -->
     <main class="container" id="arquitectura">
-        <h2 class="section-title">El Motor Detrás del Mapa</h2>
         
+        <div class="inspiration-box">
+            <h2 class="section-title">La Inspiración</h2>
+            <p>La idea de crear esta aplicación nace del deseo de <strong>utilizar y recuperar la estética de los mapas topológicos</strong> clásicos de las redes de transporte. Buscamos transformar la complejidad de la movilidad urbana de la ZMG en una experiencia visualmente limpia, intuitiva y altamente funcional.</p>
+        </div>
+
+        <h2 class="section-title">El Motor Detrás del Mapa</h2>
         <div class="grid">
             <div class="card">
                 <h3>🗺️ Topología Vectorial</h3>
@@ -156,6 +213,7 @@
     <!-- PIE DE PÁGINA -->
     <footer>
         <p>Desarrollado para la Zona Metropolitana de Guadalajara (ZMG).</p>
+        <p style="margin-top: 8px;"><strong>Dante Alejandro Corona Rodríguez</strong><br>Ingeniero Geomático | Desarrollador Java Full Stack</p>
     </footer>
 
 </body>
