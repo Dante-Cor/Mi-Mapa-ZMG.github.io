@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Mapa ZMG | Ruteador de Transporte Público</title>
+    <title>Mi Mapa ZMG | Ruteador de Transporte Público (BETA)</title>
     <style>
         /* Paleta de colores y variables */
         :root {
@@ -22,7 +22,7 @@
             line-height: 1.6; 
         }
         
-        /* Sección Principal (Hero) con efecto Glassmorphism */
+        /* Sección Principal (Hero) */
         .hero {
             background-color: var(--primary-glass);
             backdrop-filter: blur(10px);
@@ -41,8 +41,31 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.15); 
         }
         
-        .hero h1 { font-size: 3rem; margin-bottom: 10px; font-weight: 800; letter-spacing: -1px; }
-        .hero p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 20px; opacity: 0.95; }
+        .hero h1 { 
+            font-size: 3rem; 
+            margin-bottom: 10px; 
+            font-weight: 800; 
+            letter-spacing: -1px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge-beta {
+            font-size: 1rem;
+            background-color: #FFD700;
+            color: #0A1F3D;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
+        }
+
+        .hero p { font-size: 1.2rem; max-width: 650px; margin: 0 auto 25px; opacity: 0.95; }
         
         /* Botones de acción */
         .cta-container {
@@ -62,15 +85,8 @@
             transition: all 0.3s ease; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .btn-primary {
-            background: white; 
-            color: var(--primary-solid); 
-        }
-        .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
+        .btn-primary { background: white; color: var(--primary-solid); }
+        .btn-secondary { background: transparent; color: white; border: 2px solid white; }
         .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
         .btn-secondary:hover { background: rgba(255,255,255,0.1); }
 
@@ -86,7 +102,7 @@
             text-align: left;
         }
 
-        /* Contenedor y Cuadrícula de Características */
+        /* Contenedores generales */
         .container { max-width: 1100px; margin: 0 auto; padding: 60px 20px; }
         .section-title { text-align: center; font-size: 2rem; margin-bottom: 20px; color: var(--primary-solid); }
         
@@ -99,6 +115,57 @@
             color: #444;
         }
 
+        /* Carrusel de Capturas */
+        .carousel-wrapper {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            position: relative;
+        }
+        
+        .carousel {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding: 10px 20px 30px; 
+            scrollbar-width: none; 
+            -ms-overflow-style: none; 
+        }
+        
+        .carousel::-webkit-scrollbar {
+            display: none; 
+        }
+        
+        .carousel-slide {
+            flex: 0 0 auto;
+            width: 280px; 
+            scroll-snap-align: center;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            transition: transform 0.3s ease;
+            background-color: white; 
+        }
+        
+        .carousel-slide:hover {
+            transform: translateY(-5px);
+        }
+        
+        .carousel-slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .scroll-hint {
+            text-align: center;
+            color: #888;
+            font-size: 0.9rem;
+            margin-top: -10px;
+            font-weight: 500;
+        }
+
+        /* Cuadrícula Arquitectura */
         .grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -116,7 +183,7 @@
         .card:hover { transform: translateY(-5px); }
         .card h3 { color: var(--primary-solid); margin-bottom: 15px; font-size: 1.3rem; }
 
-        /* Sección del Stack Tecnológico */
+        /* Stack Tecnológico */
         .tech-stack { 
             margin-top: 60px; 
             padding: 50px; 
@@ -141,6 +208,7 @@
             font-size: 0.95rem; 
         }
         
+        /* Footer */
         footer { 
             text-align: center; 
             padding: 40px 20px; 
@@ -149,7 +217,15 @@
             background-color: white;
             border-top: 1px solid #eaeaea;
         }
-        footer strong { color: var(--text-dark); }
+        .portfolio-link {
+            color: var(--text-dark);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .portfolio-link:hover {
+            color: var(--primary-solid);
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -157,8 +233,9 @@
     <!-- CABECERA HERO -->
     <header class="hero">
         <img src="logo.svg" alt="Logo Mi Mapa ZMG">
-        <h1>Mi Mapa ZMG</h1>
+        <h1>Mi Mapa ZMG <span class="badge-beta">BETA</span></h1>
         <p>Plataforma web de planificación de rutas multimodales. Optimización de traslados urbanos integrando transporte masivo y tradicional mediante algoritmos de grafos y análisis geoespacial.</p>
+        <p style="font-size: 1rem; color: #FFD700; margin-bottom: 25px;"><em>* Proyecto en constante desarrollo y aprendizaje.</em></p>
         
         <div class="cta-container">
             <a href="https://mimapa-zmg.onrender.com/" target="_blank" class="btn btn-primary">🚀 Probar la Web App</a>
@@ -178,11 +255,31 @@
             <p>La idea de crear esta aplicación nace del deseo de <strong>utilizar y recuperar la estética de los mapas topológicos</strong> clásicos de las redes de transporte. Buscamos transformar la complejidad de la movilidad urbana de la ZMG en una experiencia visualmente limpia, intuitiva y altamente funcional.</p>
         </div>
 
+        <!-- CARRUSEL DE CAPTURAS -->
+        <div class="carousel-wrapper">
+            <h2 class="section-title" style="font-size: 1.6rem;">Interfaz de la App</h2>
+            <div class="carousel">
+                <div class="carousel-slide">
+                    <img src="TU_IMAGEN_AQUI.png" alt="Pantalla de inicio y menú de rutas">
+                </div>
+                <div class="carousel-slide">
+                    <img src="TU_IMAGEN_AQUI.png" alt="Trazado de ruta multimodal">
+                </div>
+                <div class="carousel-slide">
+                    <img src="TU_IMAGEN_AQUI.png" alt="Detalle del trébol en el mapa">
+                </div>
+                <div class="carousel-slide">
+                    <img src="TU_IMAGEN_AQUI.png" alt="Sugerencias de tiempo y costo">
+                </div>
+            </div>
+            <p class="scroll-hint">⬅️ Desliza horizontalmente para ver más ➡️</p>
+        </div>
+
         <h2 class="section-title">El Motor Detrás del Mapa</h2>
         <div class="grid">
             <div class="card">
                 <h3>🗺️ Topología Vectorial</h3>
-                <p>Renderizado dinámico de la red de transporte utilizando geometrías <code>LineString</code>. Normalización de toponimia urbana y cartografía oficial 2024 de rutas troncales y alimentadoras.</p>
+                <p>Renderizado dinámico de la red de transporte utilizando geometrías <code>LineString</code>. Normalización de toponimia urbana y cartografía oficial de rutas.</p>
             </div>
             <div class="card">
                 <h3>🧮 Algoritmo Dijkstra</h3>
@@ -191,6 +288,11 @@
             <div class="card">
                 <h3>📍 Conexión Multimodal</h3>
                 <p>Cálculos de proximidad perimetral y medición geodésica (fórmula de Haversine) para trazar rutas peatonales desde la ubicación GPS en tiempo real del usuario hasta la estación más cercana.</p>
+            </div>
+            <!-- 🔥 NUEVA TARJETA DE APIs EXTERNAS -->
+            <div class="card">
+                <h3>🌐 Integración de APIs Externas</h3>
+                <p>Consumo e integración de servicios REST de terceros para geocodificación de lugares (Nominatim), capas de tráfico en tiempo real y enrutamiento vehicular/peatonal (Mapbox), y pronóstico meteorológico geolocalizado (Open-Meteo).</p>
             </div>
         </div>
 
@@ -205,6 +307,7 @@
                 <span class="tag">PostgreSQL + PostGIS</span>
                 <span class="tag">Hibernate Spatial</span>
                 <span class="tag">Leaflet.js</span>
+                <span class="tag">Mapbox API</span>
                 <span class="tag">QGIS (Canal ETL)</span>
             </div>
         </div>
@@ -213,7 +316,12 @@
     <!-- PIE DE PÁGINA -->
     <footer>
         <p>Desarrollado para la Zona Metropolitana de Guadalajara (ZMG).</p>
-        <p style="margin-top: 8px;"><strong>Dante Alejandro Corona Rodríguez</strong><br>Ingeniero Geomático | Desarrollador Java Full Stack</p>
+        <p style="margin-top: 8px;">
+            <a href="https://dante-cor.github.io" target="_blank" class="portfolio-link">
+                <strong>Dante Alejandro Corona Rodríguez</strong>
+            </a><br>
+            Ingeniero Geomático | Desarrollador Java Full Stack
+        </p>
     </footer>
 
 </body>
