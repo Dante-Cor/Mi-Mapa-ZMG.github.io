@@ -281,44 +281,47 @@
         <h2 class="section-title">El Motor Detrás del Mapa</h2>
         <div class="grid">
             <div class="card">
+                <h3>🛡️ Arquitectura y Seguridad</h3>
+                <p>Sistema construido bajo el patrón <strong>MVC</strong> y programación orientada a objetos (<strong>POO</strong>), aplicando rigurosamente <strong>Principios SOLID</strong>. Frontend encapsulado con Módulos ES6 y patrón Pub/Sub. Backend blindado contra inyecciones de código (XSS) y vulnerabilidades de acceso (IDOR), implementando concurrencia segura (<em>Atomic Swaps</em>) y protección de memoria mediante Caché LRU.</p>
+            </div>
+            <div class="card">
                 <h3>🗺️ Topología Vectorial</h3>
                 <p>Renderizado dinámico de la red de transporte utilizando geometrías <code>LineString</code>. Normalización de toponimia urbana y cartografía oficial de rutas.</p>
             </div>
             <div class="card">
                 <h3>🧮 Algoritmo Dijkstra</h3>
-                <p>Motor de ruteo personalizado operando sobre un grafo de adyacencia dirigido. Ponderación de distancias, transbordos y direccionalidad estricta para evitar rodeos en vialidades de un solo sentido.</p>
+                <p>Motor de ruteo personalizado operando sobre un grafo de adyacencia dirigido en memoria. Ponderación de distancias, penalizaciones precisas por transbordos y direccionalidad estricta para evitar rodeos en vialidades de un solo sentido.</p>
             </div>
             <div class="card">
                 <h3>📍 Conexión Multimodal</h3>
                 <p>Cálculos de proximidad perimetral y medición geodésica (fórmula de Haversine) para trazar rutas peatonales desde la ubicación GPS en tiempo real del usuario hasta la estación más cercana.</p>
             </div>
-            <!-- 🔥 NUEVA TARJETA DE APIs EXTERNAS -->
             <div class="card">
                 <h3>🌐 Integración de APIs Externas</h3>
-                <p>Consumo e integración de servicios REST de terceros para geocodificación de lugares (Nominatim), capas de tráfico en tiempo real y enrutamiento vehicular/peatonal (Mapbox), y pronóstico meteorológico geolocalizado (Open-Meteo).</p>
+                <p>Consumo e integración de servicios REST de terceros de forma asíncrona para geocodificación de lugares (Mapbox API), capas de tráfico en tiempo real y pronóstico meteorológico geolocalizado (Open-Meteo), implementando sincronización de datos <em>Offline-First</em>.</p>
             </div>
         </div>
 
         <!-- STACK TECNOLÓGICO -->
         <div class="tech-stack">
             <h2>Stack Tecnológico</h2>
-            <p style="margin-top: 10px; color: #666;">Arquitectura cliente-servidor con separación estricta de responsabilidades y exposición vía API REST CORS.</p>
+            <p style="margin-top: 10px; color: #666;">Arquitectura cliente-servidor con separación estricta de responsabilidades, alta cohesión y exposición vía API REST.</p>
             <div class="tech-tags">
                 <span class="tag">Java</span>
-                <span class="tag">JavaScript</span>
-                <span class="tag">HTML</span>
-                <span class="tag">CSS</span>
-                <span class="tag">Bootstrap</span>
+                <span class="tag">POO</span>
+                <span class="tag">Principios SOLID</span>
+                <span class="tag">Arquitectura MVC</span>
+                <span class="tag">Módulos ES6</span>
+                <span class="tag">HTML5 / CSS3</span>
                 <span class="tag">Spring Boot</span>
                 <span class="tag">Spring Security</span>
                 <span class="tag">PostgreSQL + PostGIS</span>
                 <span class="tag">Hibernate Spatial</span>
                 <span class="tag">Leaflet.js</span>
                 <span class="tag">Mapbox API</span>
-                <span class="tag">OpenStreetMap</span>
-                <span class="tag">QGIS (Canal ETL)</span>
-                <span class="tag">Render</span>
-                <span class="tag">Neon</span>
+                <span class="tag">Patrón Pub/Sub</span>
+                <span class="tag">Caché LRU</span>
+                <span class="tag">Render / Neon</span>
             </div>
         </div>
     </main>
